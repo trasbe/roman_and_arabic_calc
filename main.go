@@ -1,10 +1,13 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"log"
+	"os"
 	"regexp"
 	"strconv"
+	"strings"
 )
 
 var rome_numbers_key = map[string]int{ //Ключи представляют тип string, значения - тип int
@@ -188,20 +191,51 @@ func check_arabic_numbers_regexp(x string, y string) bool {
 	return false
 }
 
+func check_operation(x string) bool {
+	if x == "*" || x == "/" || x == "+" || x == "-" {
+		return true
+	}
+	return false
+}
+
 func main() {
-	//var i_scan_numbered int
 	var err error
 	var result float32
 	var result_roman string
 	var string1, string2, operation string
 	fmt.Println("Введите выражение арабскими цифрами или римскими от 1 до 10")
-	//i_scan_numbered, err = fmt.Scan(&string1, &operation, &string2)
-	_, err = fmt.Scan(&string1, &operation, &string2)
 	if err != nil {
 		log.Fatal(err)
 	}
+	r1 := bufio.NewReader(os.Stdin)
+	input, err := r1.ReadString('\n')
+	if err != nil {
+		log.Fatal(err)
+	}
+	words := strings.Fields(input)
+	operation = words[1]
+	string1 = words[0]
+	string2 = words[2]
+	if len(words) > 3 {
+		log.Fatal("Введите выражение в формате \"число операция число\" ")
+	}
+	/*fmt.Println("Введите выражение арабскими цифрами или римскими от 1 до 10")
+	_, err = fmt.Scan(&string3)
+	if err != nil {
+		log.Fatal(err)
+	}*/
+	//i_scan_numbered, err = fmt.Scan(&string1, &operation, &string2)
+	//_, err = fmt.Scan(&string1, &operation, &string2)
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
 	if string1 == "" || string2 == "" || operation == "" {
 		log.Fatal("Введены не все данные")
+	}
+	//println("operation = ;", operation)
+	//println("check_operation = ;", check_operation(operation))
+	if check_operation(operation) == false {
+		log.Fatal("Введите правильный математический оператор")
 	}
 	//fmt.Println("Entered numbers:  ", string1, operation, string2, i_scan_numbered)
 	int1, _ := strconv.Atoi(string1)
