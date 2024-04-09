@@ -219,39 +219,17 @@ func main() {
 	if len(words) > 3 {
 		log.Fatal("Введите выражение в формате \"число операция число\" ")
 	}
-	/*fmt.Println("Введите выражение арабскими цифрами или римскими от 1 до 10")
-	_, err = fmt.Scan(&string3)
-	if err != nil {
-		log.Fatal(err)
-	}*/
-	//i_scan_numbered, err = fmt.Scan(&string1, &operation, &string2)
-	//_, err = fmt.Scan(&string1, &operation, &string2)
-	//if err != nil {
-	//	log.Fatal(err)
-	//}
 	if string1 == "" || string2 == "" || operation == "" {
 		log.Fatal("Введены не все данные")
 	}
-	//println("operation = ;", operation)
-	//println("check_operation = ;", check_operation(operation))
-	if check_operation(operation) == false {
+	if !check_operation(operation) {
 		log.Fatal("Введите правильный математический оператор")
 	}
-	//fmt.Println("Entered numbers:  ", string1, operation, string2, i_scan_numbered)
 	int1, _ := strconv.Atoi(string1)
-	/*if err != nil {
-		log.Fatal(err)
-	}*/
 	int2, _ := strconv.Atoi(string2)
-	/*if err != nil { here's err when rome numbers uses .Atoi
-		log.Fatal(err)
-	}*/
 	num1 := float32(int1)
 	num2 := float32(int2)
-	/*if (check_romanian_symbols(string1, string2)) == false && check_arabic_numbers(num1, num2) == false {
-		log.Fatalf("check romanian symbols and check arabic numbers not approved\n Entered expression: %s %s %s", string1, operation, string2)
-	}*/
-	if (check_romanian_symbols(string1, string2)) == false && check_arabic_numbers_regexp(string1, string2) == false {
+	if !(check_romanian_symbols(string1, string2)) && !check_arabic_numbers_regexp(string1, string2) {
 		log.Fatalf("Проверьте правильность ввода данных")
 	}
 	if check_romanian_symbols(string1, string2) {

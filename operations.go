@@ -51,13 +51,7 @@ func multiplication_(x float32, y float32) {
 */
 package main
 
-import (
-	"fmt"
-	"log"
-	"regexp"
-)
-
-func main_() {
+/* func main_() {
 	var input string
 	fmt.Println("Enter a Roman numeral between 1 and 10: ")
 	_, err := fmt.Scan(&input)
@@ -72,4 +66,4 @@ func main_() {
 	} else {
 		fmt.Println("Invalid Roman numeral. Please enter a Roman numeral between 1 and 10.")
 	}
-}
+} */
